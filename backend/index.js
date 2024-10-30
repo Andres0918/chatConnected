@@ -1,15 +1,32 @@
 import express from 'express'
 import logger from 'morgan'
+import path from 'path'
+import { Server } from 'socket.io'
+import { createServer } from 'node:http'
 
 const port = process.env.PORT ?? 3000
 
 const app = express()
-app.use(logger('dev'))
+const server = createServer(app)
+const io = new Server(server)
 
-app.get('/', (req, res) => {
-  res.send('askajsahskjss')
+io.on('connection', (socket)=> {
+  console.log('A new user has connected')
+
+  socket.on('disconnect', () => {
+    console.log('Un usuario se desconecto')
+  })
 })
 
-app.listen(port, () =>{
+app.use(logger('dev'))
+
+const angularDistPath = path.join(process.cwd(), '../front/dist/chat-connected/browser/chat')
+app.use(express.static(angularDistPath))
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(angularDistPath, 'index.html'))
+})
+
+server.listen(port, () =>{
   console.log(`Server running on port ${port}`)
 })
