@@ -1,3 +1,11 @@
+h2{
+   font-family: 'GOST Common', Arial, sans-serif;
+}
+h4{
+   font-size: 12px;
+   color: aliceblue;
+   font-family: 'Cascadia Code', Arial, sans-serif;
+}
 .chat-container {
    display: flex;
    flex-direction: column;

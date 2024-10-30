@@ -1,6 +1,7 @@
-<div class="chat-container">
+<form class="chat-container" id="chatForm" (ngSubmit)="sendMessage()">
    <header class="chat-header">
-       <h2>Chat</h2>
+       <h2>Chat - Andest</h2>
+       <h4>Esteban Cordova; Andres Chabla</h4>
    </header>
 
    <div class="chat-box">
@@ -10,9 +11,9 @@
    </div>
 
    <footer class="chat-footer">
-       <input type="text" [(ngModel)]="text" placeholder="Escribe un mensaje..." />
-       <button (click)="sendMessage()">Enviar 🤖</button>
+       <input type="text" id="textForm" [(ngModel)]="text" name="messageText" placeholder="Escribe un mensaje..." />
+       <button id="btnForm" type="submit">Enviar 🤖</button>
    </footer>
-</div>
+</form>
 
  
