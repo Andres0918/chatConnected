@@ -6,7 +6,30 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script type="module">
+    import { io } from 'https://cdn.socket.io/4.8.1/socket.io.esm.min.js'
+    const socket = io()
+
+    const form = document.getElementById('chatForm')
+    const input = document.getElementById('textForm')
+    const messages = document.getElementById('messages')
+
+    socket.on
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      if (input.value){
+        socket.emit('chat message', input.value)
+        input.value = ''
+      }
+    })
+  </script>
+
 </head>
+
+
 <body>
   <app-root></app-root>
 </body>
