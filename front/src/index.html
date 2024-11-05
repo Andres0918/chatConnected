@@ -15,7 +15,10 @@
     const input = document.getElementById('textForm')
     const messages = document.getElementById('messages')
 
-    socket.on
+    socket.on('chat message', (msg) => {
+      const item = `<li>${msg}</li>`
+      messages.insertAdjacentHTML('beforeend', item)
+    })
 
     form.addEventListener('submit', (e) => {
       e.preventDefault()
