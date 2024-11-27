@@ -6,12 +6,16 @@
 
    <div class="chat-box">
     <ul class="messages" id="messages">
-        <li>AAAAAA</li>
+        <li *ngFor="let message of messages">{{message}}</li>
     </ul>
    </div>
 
    <footer class="chat-footer">
-       <input type="text" id="textForm" [(ngModel)]="text" name="messageText" placeholder="Escribe un mensaje..." />
+       <input type="text" 
+       id="textForm" 
+       [(ngModel)]="text" 
+       name="messageText" 
+       placeholder="Escribe un mensaje..." />
        <button id="btnForm" type="submit">Enviar 🙏</button>
    </footer>
 </form>

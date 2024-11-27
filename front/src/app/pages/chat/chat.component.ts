@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { WebSocketService } from '../../services/websocket.service';
 
 
 @Component({
@@ -13,9 +14,18 @@ export class ChatComponent {
   text: string = '';
   messages: string[] = [];
 
-  sendMessage() {
+  constructor(private webSocketService: WebSocketService){}
+
+  ngOnInit():void{
+    this.webSocketService.connect();
+    this.webSocketService['socket'].on('chat message', (msg: string) => {
+      this.messages.push(msg);
+    })
+  }
+
+  sendMessage():void {
     if (this.text.trim()) {
-      this.messages.push(this.text); 
+      this.webSocketService.sendMessage(this.text); 
       this.text = '';
     }
   }
